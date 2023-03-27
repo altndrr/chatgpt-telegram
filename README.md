@@ -17,7 +17,7 @@ This repository is a Telegram Bot re-creation of ChatGPT, and it was forked from
 
 2. Get your Telegram bot token from [@BotFather](https://t.me/BotFather)
 
-3. Modify the `[config/chat_modes.yml](https://github.com/altndrr/chatpgt-telegram/blob/main/config/chat_modes.yml)` with your on ChatGPT modes.
+3. Modify the [config/chat_modes.yml](https://github.com/altndrr/chatpgt-telegram/blob/main/config/chat_modes.yml) with your on ChatGPT modes.
 
 4. Create the external MongoDB dataset on i.e. Railway and get its URL.
 
