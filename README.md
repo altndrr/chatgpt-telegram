@@ -31,7 +31,7 @@ This repository is a Telegram Bot re-creation of ChatGPT, and it was forked from
     docker run --rm -it chatgpt-telegram:devel \
       -e TELEGRAM_TOKEN={YOUR TOKEN} \
       -e OPENAI_API_KEY={YOUR KEY} \
-      -e MONGODB_URI={YOUR URI} \
+      -e MONGO_URL={YOUR URL} \
       -e ALLOWED_TELEGRAM_USERNAMES={YOUR TELEGRAM USERNAME+OTHERS}
     ```
 

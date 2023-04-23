@@ -15,7 +15,7 @@ use_chatgpt_api = os.environ.get("USE_CHATGPT_API", True)
 allowed_telegram_usernames = os.environ.get("ALLOWED_TELEGRAM_USERNAMES", "").split(",")
 new_dialog_timeout = os.environ.get("NEW_DIALOG_TIMEOUT", 600)
 enable_message_streaming = os.environ.get("ENABLE_MESSAGE_STREAMING", True)
-mongodb_uri = os.environ.get("MONGODB_URI")
+mongo_url = os.environ.get("MONGO_URL")
 
 # chat_modes
 with open(config_dir / "chat_modes.yml", 'r') as f:
