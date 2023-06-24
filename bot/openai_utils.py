@@ -18,7 +18,7 @@ OPENAI_COMPLETION_OPTIONS = {
 
 class ChatGPT:
     def __init__(self, model="gpt-3.5-turbo"):
-        assert model in {"text-davinci-003", "gpt-3.5-turbo", "gpt-4"}, f"Unknown model: {model}"
+        assert model in {"gpt-3.5-turbo", "gpt-4"}, f"Unknown model: {model}"
         self.model = model
     
     async def send_message(self, message, dialog_messages=[], chat_mode="assistant"):
@@ -37,14 +37,6 @@ class ChatGPT:
                         **OPENAI_COMPLETION_OPTIONS
                     )
                     answer = r.choices[0].message["content"]
-                elif self.model == "text-davinci-003":
-                    prompt = self._generate_prompt(message, dialog_messages, chat_mode)
-                    r = await openai.Completion.acreate(
-                        engine=self.model,
-                        prompt=prompt,
-                        **OPENAI_COMPLETION_OPTIONS
-                    )
-                    answer = r.choices[0].text
                 else:
                     raise ValueError(f"Unknown model: {model}")
 
@@ -86,21 +78,6 @@ class ChatGPT:
                             yield "not_finished", answer
 
                     n_input_tokens, n_output_tokens = self._count_tokens_from_messages(messages, answer, model=self.model)
-                elif self.model == "text-davinci-003":
-                    prompt = self._generate_prompt(message, dialog_messages, chat_mode)
-                    r_gen = await openai.Completion.acreate(
-                        engine=self.model,
-                        prompt=prompt,
-                        stream=True,
-                        **OPENAI_COMPLETION_OPTIONS
-                    )
-                    
-                    answer = ""
-                    async for r_item in r_gen:
-                        answer += r_item.choices[0].text
-                        yield "not_finished", answer
-
-                    n_input_tokens, n_output_tokens = self._count_tokens_from_prompt(prompt, answer, model=self.model)
 
                 answer = self._postprocess_answer(answer)
                 
